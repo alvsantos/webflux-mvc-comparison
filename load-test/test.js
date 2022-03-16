@@ -13,8 +13,10 @@ export const options = {
 };
 export default function () {
 
-  const baseUrl = `http://localhost:8080`;
-  const urlPerson = `${baseUrl}/person`;
+  const mvcUrl = `http://localhost:8080`;
+  const reactiveUrl = `http://localhost:8081`;
+  
+  const urlPerson = `${reactiveUrl}/person`;
  
   const params = {
     headers: {
