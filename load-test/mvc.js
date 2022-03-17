@@ -15,8 +15,8 @@ export default function () {
 
   const mvcUrl = `http://localhost:8080`;
   const reactiveUrl = `http://localhost:8081`;
-  
-  const urlPerson = `${reactiveUrl}/person?name=teste`;
+
+  const urlPerson = `${mvcUrl}/person`;
  
   const params = {
     headers: {
