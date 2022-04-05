@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 public class PersonController {
@@ -25,6 +28,22 @@ public class PersonController {
 //            .bodyToMono(Person.class);
 
     return this.repository.findByName(name);
+  }
+
+  public Mono<Person> exampleFlatMap(String name) {
+    return Mono.just(name)
+            .flatMap(this.repository::findByName);
+  }
+
+  public Flux<Person> exampleFlatMapMany(String age) {
+    return Mono.just(age)
+            .flatMapMany(this.repository::findByAge);
+  }
+
+  public Mono<List<Person>> exampleCollectList(String age) {
+    return Mono.just(age)
+            .flatMapMany(this.repository::findByAge)
+            .collectList();
   }
 
 }
